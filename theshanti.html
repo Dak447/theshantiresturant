@@ -1,0 +1,1161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shanti Restaurant & Cafe</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-color: #d4af37;
+            --secondary-color: #1a1a1a;
+            --accent-color: #8b0000;
+            --light-color: #f8f9fa;
+            --dark-color: #212529;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--dark-color);
+            overflow-x: hidden;
+        }
+        
+        h1, h2, h3, h4, h5 {
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .navbar {
+            background-color: rgba(26, 26, 26, 0.9);
+            transition: all 0.3s ease;
+        }
+        
+        .navbar.scrolled {
+            background-color: var(--secondary-color);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .navbar-brand {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            color: var(--primary-color) !important;
+            font-size: 1.8rem;
+        }
+        
+        .nav-link {
+            color: white !important;
+            font-weight: 500;
+            margin: 0 10px;
+            position: relative;
+        }
+        
+        .nav-link:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: var(--primary-color);
+            bottom: 0;
+            left: 0;
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover:after {
+            width: 100%;
+        }
+        
+        .hero-section {
+            height: 100vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://t3.ftcdn.net/jpg/07/58/26/62/360_F_758266271_yksdY7RLYIIY6jofjJorjylEDOvgcuze.jpg') no-repeat center center;
+            background-size: cover;
+            color: white;
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+        
+        .hero-content {
+            text-align: center;
+        }
+        
+        .hero-content h1 {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .btn-primary-custom {
+            background-color: var(--primary-color);
+            border: none;
+            color: var(--secondary-color);
+            padding: 12px 30px;
+            font-weight: 600;
+            border-radius: 0;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary-custom:hover {
+            background-color: var(--accent-color);
+            color: white;
+            transform: translateY(-3px);
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+            position: relative;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--secondary-color);
+            margin-bottom: 15px;
+        }
+        
+        .section-title:after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 3px;
+            background: var(--primary-color);
+            margin: 0 auto;
+        }
+        
+        .about-section {
+            padding: 100px 0;
+            background-color: var(--light-color);
+        }
+        
+        .about-img {
+            position: relative;
+            overflow: hidden;
+            border-radius: 5px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .about-img img {
+            transition: transform 0.5s ease;
+        }
+        
+        .about-img:hover img {
+            transform: scale(1.05);
+        }
+        
+        .about-content {
+            padding-left: 30px;
+        }
+        
+        .about-content h3 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: var(--secondary-color);
+        }
+        
+        .about-content p {
+            margin-bottom: 20px;
+            line-height: 1.8;
+        }
+        
+        .menu-section {
+            padding: 100px 0;
+            background-color: white;
+        }
+        
+        .menu-tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+        
+        .menu-tab {
+            padding: 10px 25px;
+            margin: 0 10px;
+            background: none;
+            border: none;
+            font-weight: 600;
+            color: var(--dark-color);
+            cursor: pointer;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        .menu-tab.active, .menu-tab:hover {
+            color: var(--primary-color);
+        }
+        
+        .menu-tab.active:after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            background: var(--primary-color);
+            bottom: 0;
+            left: 0;
+        }
+        
+        .menu-item {
+            margin-bottom: 30px;
+            display: none;
+        }
+        
+        .menu-item.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .menu-card {
+            background-color: white;
+            border-radius: 5px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            height: 100%;
+        }
+        
+        .menu-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .menu-img {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .menu-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .menu-card:hover .menu-img img {
+            transform: scale(1.1);
+        }
+        
+        .menu-details {
+            padding: 20px;
+        }
+        
+        .menu-details h3 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: var(--secondary-color);
+        }
+        
+        .menu-details p {
+            color: #666;
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+        
+        .menu-price {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .price {
+            font-weight: 700;
+            color: var(--primary-color);
+            font-size: 1.2rem;
+        }
+        
+        .gallery-section {
+            padding: 100px 0;
+            background-color: var(--light-color);
+        }
+        
+        .gallery-item {
+            margin-bottom: 30px;
+            overflow: hidden;
+            border-radius: 5px;
+            position: relative;
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+        
+        .gallery-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+        
+        .gallery-overlay i {
+            color: white;
+            font-size: 2rem;
+        }
+        
+        .testimonial-section {
+            padding: 100px 0;
+            background-color: white;
+        }
+        
+        .testimonial-card {
+            background-color: var(--light-color);
+            padding: 30px;
+            border-radius: 5px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            margin: 15px;
+            position: relative;
+        }
+        
+        .testimonial-card:before {
+            content: '\201C';
+            font-family: Georgia, serif;
+            font-size: 4rem;
+            color: rgba(212, 175, 55, 0.2);
+            position: absolute;
+            top: 10px;
+            left: 10px;
+        }
+        
+        .testimonial-text {
+            margin-bottom: 20px;
+            font-style: italic;
+            line-height: 1.8;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+        }
+        
+        .author-img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-right: 15px;
+        }
+        
+        .author-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .author-info h4 {
+            margin-bottom: 5px;
+            font-size: 1.1rem;
+            color: var(--secondary-color);
+        }
+        
+        .author-info p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        .contact-section {
+            padding: 100px 0;
+            background-color: var(--light-color);
+        }
+        
+        .contact-info {
+            margin-bottom: 30px;
+        }
+        
+        .contact-info h3 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: var(--secondary-color);
+        }
+        
+        .contact-detail {
+            display: flex;
+            margin-bottom: 15px;
+        }
+        
+        .contact-detail i {
+            color: var(--primary-color);
+            font-size: 1.2rem;
+            margin-right: 15px;
+            margin-top: 5px;
+        }
+        
+        .contact-form .form-control {
+            border-radius: 0;
+            border: 1px solid #ddd;
+            padding: 12px 15px;
+            margin-bottom: 20px;
+        }
+        
+        .contact-form .form-control:focus {
+            box-shadow: none;
+            border-color: var(--primary-color);
+        }
+        
+        footer {
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 50px 0 20px;
+        }
+        
+        .footer-logo {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            color: var(--primary-color);
+            font-size: 2rem;
+            margin-bottom: 20px;
+            display: inline-block;
+        }
+        
+        .footer-about p {
+            margin-bottom: 20px;
+            line-height: 1.8;
+        }
+        
+        .social-links a {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 40px;
+            margin-right: 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            background-color: var(--primary-color);
+            color: var(--secondary-color);
+        }
+        
+        .footer-links h3 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+        
+        .footer-links ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: #bbb;
+            transition: all 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: var(--primary-color);
+            padding-left: 5px;
+            text-decoration: none;
+        }
+        
+        .footer-contact h3 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+        
+        .footer-contact p {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        .footer-contact i {
+            margin-right: 10px;
+            color: var(--primary-color);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            margin-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            background-color: var(--primary-color);
+            color: var(--secondary-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            z-index: 999;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .back-to-top.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .back-to-top:hover {
+            background-color: var(--accent-color);
+            color: white;
+        }
+        
+        /* Responsive styles */
+        @media (max-width: 991.98px) {
+            .hero-content h1 {
+                font-size: 3rem;
+            }
+            
+            .about-content {
+                padding-left: 0;
+                margin-top: 30px;
+            }
+        }
+        
+        @media (max-width: 767.98px) {
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+            
+            .menu-tab {
+                padding: 8px 15px;
+                margin: 0 5px;
+            }
+        }
+        
+        @media (max-width: 575.98px) {
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+            
+            .hero-content p {
+                font-size: 1rem;
+            }
+            
+            .btn-primary-custom {
+                padding: 10px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#"> The Shanti Restaurant & Cafe</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#menu">Menu</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#gallery">Gallery</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#testimonials">Testimonials</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Shanti Restaurant & Cafe</h1>
+                <p>Experience the perfect blend of authentic flavors and contemporary dining in the heart of the city.</p>
+                <a href="#reservation" class="btn btn-primary-custom">Reserve a Table</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about-section" id="about">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Story</h2>
+                <p>Discover what makes us special</p>
+            </div>
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <div class="about-img">
+                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/6b88f900-252e-4ecd-8cec-5783676572b3.png" alt="Chef preparing food in a modern kitchen with fresh ingredients" />
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="about-content">
+                        <h3>Welcome to The Shanti Restaurant & Cafe</h3>
+                        <p>Founded in 2010, Shanti Restaurant & Cafe has been serving authentic cuisine with a modern twist. Our passion for food and commitment to quality has made us a favorite among food enthusiasts.</p>
+                        <p>We source only the freshest ingredients from local farmers and suppliers, ensuring every dish tells a story of quality and care. Our chefs bring years of experience and creativity to the table.</p>
+                        <p>At Shanti, we believe dining is not just about food, but about creating memorable experiences. Our warm ambiance and attentive service complete the perfect dining experience.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Menu Section -->
+    <section class="menu-section" id="menu">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Menu</h2>
+                <p>Delicious offerings for every palate</p>
+            </div>
+            
+            <div class="menu-tabs">
+                <button class="menu-tab active" data-category="all">All</button>
+                <button class="menu-tab" data-category="starters">Starters</button>
+                <button class="menu-tab" data-category="main">Main Course</button>
+                <button class="menu-tab" data-category="desserts">Desserts</button>
+                <button class="menu-tab" data-category="drinks">Drinks</button>
+            </div>
+            
+            <div class="row">
+                <!-- Starter Items -->
+                <div class="col-lg-4 col-md-6 menu-item" data-category="starters">
+                    <div class="menu-card">
+                        <div class="menu-img">
+                            <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/2c89ad71-1f9b-47e5-9d28-01b3390aacb5.png" alt="Fresh spring rolls with shrimp and vegetables served with dipping sauce" />
+                        </div>
+                        <div class="menu-details">
+                            <h3>Fresh Spring Rolls</h3>
+                            <p>Delicate rice paper rolls filled with shrimp, fresh herbs, and vegetables served with homemade peanut sauce.</p>
+                            <div class="menu-price">
+                                <span class="price">Rs.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6 menu-item" data-category="starters">
+                    <div class="menu-card">
+                        <div class="menu-img">
+                            <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/aed1d78f-fb68-44c7-866c-c8484a7dae17.png" alt="Crispy fried calamari with lemon wedges and aioli dip" />
+                        </div>
+                        <div class="menu-details">
+                            <h3>Crispy Calamari</h3>
+                            <p>Tender squid lightly battered and fried to golden perfection, served with lemon aioli and fresh herbs.</p>
+                            <div class="menu-price">
+                                <span class="price">Rs.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Main Course Items -->
+                <div class="col-lg-4 col-md-6 menu-item" data-category="main">
+                    <div class="menu-card">
+                        <div class="menu-img">
+                            <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/949abf75-aab8-4fb2-aa2a-d9e5773342c7.png" alt="Grilled salmon with asparagus and lemon butter sauce" />
+                        </div>
+                        <div class="menu-details">
+                            <h3>Grilled Salmon</h3>
+                            <p>Fresh Atlantic salmon fillet grilled to perfection with lemon butter sauce, served with seasonal vegetables.</p>
+                            <div class="menu-price">
+                                <span class="price">Rs.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6 menu-item" data-category="main">
+                    <div class="menu-card">
+                        <div class="menu-img">
+                            <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/2c8cd284-473c-432e-86bb-d6ac3c2563b6.png" alt="Beef tenderloin steak with roasted potatoes and red wine reduction" />
+                        </div>
+                        <div class="menu-details">
+                            <h3>Beef Tenderloin</h3>
+                            <p>Premium cut beef tenderloin cooked to your preference, served with roasted potatoes and red wine reduction.</p>
+                            <div class="menu-price">
+                                <span class="price">Rs.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Dessert Items -->
+                <div class="col-lg-4 col-md-6 menu-item" data-category="desserts">
+                    <div class="menu-card">
+                        <div class="menu-img">
+                            <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/43c7399c-0d2f-4f7c-b34c-70014a7ee80b.png" alt="Chocolate lava cake with vanilla ice cream and berry garnish" />
+                        </div>
+                        <div class="menu-details">
+                            <h3>Chocolate Lava Cake</h3>
+                            <p>Warm chocolate cake with a molten center, served with vanilla bean ice cream and fresh berries.</p>
+                            <div class="menu-price">
+                                <span class="price">Rs.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6 menu-item" data-category="desserts">
+                    <div class="menu-card">
+                        <div class="menu-img">
+                            <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/4db17432-1ab0-45c0-8047-e3db15ae045b.png" alt="Crème brûlée with caramelized sugar top and fresh mint" />
+                        </div>
+                        <div class="menu-details">
+                            <h3>Crème Brûlée</h3>
+                            <p>Classic vanilla bean custard with a crisp caramelized sugar topping, served with seasonal fruit.</p>
+                            <div class="menu-price">
+                                <span class="price">Rs.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Drink Items -->
+                <div class="col-lg-4 col-md-6 menu-item" data-category="drinks">
+                    <div class="menu-card">
+                        <div class="menu-img">
+                            <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/c020fd3b-1014-4983-a7a6-0553307aaa39.png" alt="Colorful cocktails with citrus garnishes on a marble bar" />
+                        </div>
+                        <div class="menu-details">
+                            <h3>Signature Cocktails</h3>
+                            <p>Our mixologist's special creations using premium spirits and fresh ingredients. Ask your server for today's selection.</p>
+                            <div class="menu-price">
+                                <span class="price">Rs.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6 menu-item" data-category="drinks">
+                    <div class="menu-card">
+                        <div class="menu-img">
+                            <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/d007752b-0ce6-46b4-97c7-b8370cca7eb9.png" alt="Selection of fine wines in elegant glasses" />
+                        </div>
+                        <div class="menu-details">
+                            <h3>Wine Selection</h3>
+                            <p>Carefully curated wines from around the world. We offer selections by the glass or bottle.</p>
+                            <div class="menu-price">
+                                <span class="price">Rs.>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="gallery-section" id="gallery">
+        <div class="container">
+            <div class="section-title">
+                <h2>Gallery</h2>
+                <p>A glimpse of our world</p>
+            </div>
+            
+            <div class="row">
+                <div class="col-lg-3 col-md-6">
+                    <div class="gallery-item">
+                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/86e0ed8c-50c1-4be6-92d9-c3ec4716e55a.png" alt="Elegant restaurant interior with warm lighting and comfortable seating" />
+                        <div class="gallery-overlay">
+                            <i class="fas fa-search-plus"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-6">
+                    <div class="gallery-item">
+                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/c6c770e0-67be-438f-bfde-9394f7b44a17.png" alt="Chef preparing dishes in an open kitchen with fresh ingredients" />
+                        <div class="gallery-overlay">
+                            <i class="fas fa-search-plus"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-6">
+                    <div class="gallery-item">
+                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/a2e8d810-10de-4d3e-831e-3d187536dff1.png" alt="Beautifully plated dish with colorful garnishes" />
+                        <div class="gallery-overlay">
+                            <i class="fas fa-search-plus"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-6">
+                    <div class="gallery-item">
+                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/1022dd87-b44f-466c-9987-02bcbc3005be.png" alt="Outdoor patio seating with string lights and greenery" />
+                        <div class="gallery-overlay">
+                            <i class="fas fa-search-plus"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-6">
+                    <div class="gallery-item">
+                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/3b0db156-072c-4e1f-aa90-994455b88dff.png" alt="Bar area with premium spirits and elegant glassware" />
+                        <div class="gallery-overlay">
+                            <i class="fas fa-search-plus"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-6">
+                    <div class="gallery-item">
+                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/a6de1f0d-e5ac-4f6f-9c8d-8029833c4aa3.png" alt="Fresh ingredients arranged beautifully on a wooden table" />
+                        <div class="gallery-overlay">
+                            <i class="fas fa-search-plus"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-6">
+                    <div class="gallery-item">
+                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/5a8b8bca-565b-4fef-8859-e122265ce193.png" alt="Group of friends enjoying a meal together at a cozy table" />
+                        <div class="gallery-overlay">
+                            <i class="fas fa-search-plus"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-6">
+                    <div class="gallery-item">
+                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/cddfe76a-ff22-42d8-b647-7e9a0c90270b.png" alt="Artistic dessert presentation with chocolate decorations" />
+                        <div class="gallery-overlay">
+                            <i class="fas fa-search-plus"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonial Section -->
+    <section class="testimonial-section" id="testimonials">
+        <div class="container">
+            <div class="section-title">
+                <h2>Testimonials</h2>
+                <p>What our guests say</p>
+            </div>
+            
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="testimonial-card">
+                        <p class="testimonial-text">"The food was absolutely incredible! Every dish was prepared with such care and attention to detail. The service was impeccable too."</p>
+                        <div class="testimonial-author">
+                            <div class="author-img">
+                                <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/6a02fcc5-a5a3-4ff6-98af-f38e025e6134.png" alt="Smiling woman in her 30s with dark hair" />
+                            </div>
+                            <div class="author-info">
+                                <h4>Sarah Johnson</h4>
+                                <p>Food Critic</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4">
+                    <div class="testimonial-card">
+                        <p class="testimonial-text">"I've dined at many restaurants around the world, and Shanti stands out for its unique flavors and warm ambiance. Highly recommended!"</p>
+                        <div class="testimonial-author">
+                            <div class="author-img">
+                                <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/07e49269-fe2c-4c03-bacf-5c2e4ce5667f.png" alt="Middle-aged man with glasses and a friendly smile" />
+                            </div>
+                            <div class="author-info">
+                                <h4>Michael Chen</h4>
+                                <p>Travel Blogger</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4">
+                    <div class="testimonial-card">
+                        <p class="testimonial-text">"Perfect place for our anniversary dinner. The staff went above and beyond to make our evening special. We'll definitely be back!"</p>
+                        <div class="testimonial-author">
+                            <div class="author-img">
+                                <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/5b58bc26-1066-414f-b146-4c9fd49af18c.png" alt="Couple smiling together, dressed elegantly" />
+                            </div>
+                            <div class="author-info">
+                                <h4>Emily & David Wilson</h4>
+                                <p>Regular Guests</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact-section" id="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2>Contact Us</h2>
+                <p>Visit Here and Enjoy Your Food </p>
+                                <p> With family  &  Friends</p>
+
+            </div>
+            
+            <div class="row">
+                <div class="col-lg-5">
+                    <div class="contact-info">
+                        <h3>Get in Touch</h3>
+                        <div class="contact-detail">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <div>
+                                <h4>Location</h4>
+                                <p>Near Moradabad Road Seohara bijnor 246746 </p>
+                            </div>
+                        </div>
+                        <div class="contact-detail">
+                            <i class="fas fa-phone-alt"></i>
+                            <div>
+                                <h4>Phone</h4>
+                                <p>+91 9897113199</p>
+                                <p>+91 9548082691</p>
+
+                            </div>
+                        </div>
+                        <div class="contact-detail">
+                            <i class="fas fa-envelope"></i>
+                            <div>
+                                <h4>Email</h4>
+                                <p>theshantirestaurant@gmail.com</p>
+                            </div>
+                        </div>
+                        <div class="contact-detail">
+                            <i class="fas fa-clock"></i>
+                            <div>
+                                <h4>Opening Hours</h4>
+                                <p>Monday - Friday: 09:00 AM - 10:00 PM<br>
+                                Saturday - Sunday: 10:00 AM - 11:00 PM</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-7">
+                    <form class="contact-form" id="reservation">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" placeholder="Your Name" required>
+                            </div>
+                            <div class="col-md-6">
+                                <input type="email" class="form-control" placeholder="Your Email" required>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <input type="tel" class="form-control" placeholder="Phone Number" required>
+                            </div>
+                            <div class="col-md-6">
+                                <input type="number" class="form-control" placeholder="Number of Guests" min="1" required>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <input type="date" class="form-control" required>
+                            </div>
+                            <div class="col-md-6">
+                                <input type="time" class="form-control" required>
+                            </div>
+                        </div>
+                        <textarea class="form-control" rows="5" placeholder="Special Requests"></textarea>
+                        <button type="submit" class="btn btn-primary-custom">Make Reservation</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="footer-about">
+                        <a href="#" class="footer-logo"> The Shanti Restaurant & Cafe</a>
+                        <p> The Shanti Restaurant & Cafe offers a unique dining experience blending authentic flavors with contemporary techniques in a warm and inviting atmosphere.</p>
+                        <div class="social-links">
+                            <a href="#"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-pinterest"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4">
+                    <div class="footer-links">
+                        <h3>Quick Links</h3>
+                        <ul>
+                            <li><a href="#home">Home</a></li>
+                            <li><a href="#about">About Us</a></li>
+                            <li><a href="#menu">Menu</a></li>
+                            <li><a href="#gallery">Gallery</a></li>
+                            <li><a href="#testimonials">Testimonials</a></li>
+                            <li><a href="#contact">Contact</a></li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4">
+                    <div class="footer-contact">
+                        <h3>Contact Info</h3>
+                        <p><i class="fas fa-map-marker-alt"></i> Near Moradabad Road Seohara bijnor 246746</p>
+                        <p><i class="fas fa-phone-alt"></i> +91 9548082691</p>
+                        <p><i class="fas fa-envelope"></i> theshantirestaurant@gmail.com</p>
+                        <p><i class="fas fa-clock"></i> Mon-Fri: 9AM - 10PM<br>
+                        Sat-Sun: 10AM - 11PM</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>2025 Shanti Restaurant & Cafe </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <a href="#" class="back-to-top"><i class="fas fa-arrow-up"></i></a>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+        
+        // Menu filtering
+        document.addEventListener('DOMContentLoaded', function() {
+            const tabs = document.querySelectorAll('.menu-tab');
+            const items = document.querySelectorAll('.menu-item');
+            
+            // Show all items initially
+            items.forEach(item => {
+                if (item.dataset.category === 'starters') {
+                    item.classList.add('active');
+                }
+            });
+            
+            tabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    // Update active tab
+                    tabs.forEach(t => t.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    const category = this.dataset.category;
+                    
+                    // Filter items
+                    items.forEach(item => {
+                        item.classList.remove('active');
+                        if (category === 'all' || item.dataset.category === category) {
+                            item.classList.add('active');
+                        }
+                    });
+                });
+            });
+            
+            // Smooth scrolling for navigation links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+            
+            // Back to top button
+            const backToTopButton = document.querySelector('.back-to-top');
+            
+            window.addEventListener('scroll', function() {
+                if (window.pageYOffset > 300) {
+                    backToTopButton.classList.add('active');
+                } else {
+                    backToTopButton.classList.remove('active');
+                }
+            });
+            
+            // Form submission
+            const reservationForm = document.getElementById('reservation');
+            reservationForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                alert('Thank you for your reservation! We will contact you shortly to confirm.');
+                this.reset();
+            });
+            
+            // Initialize all menu items as inactive except starters
+            items.forEach(item => {
+                if (item.dataset.category !== 'starters') {
+                    item.classList.remove('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+
